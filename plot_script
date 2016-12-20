@@ -1,5 +1,0 @@
-set terminal jpeg size 1000, 700
-set output "wykres.jpg"
-set grid
-plot "data.txt"
-exit

@@ -14,15 +14,20 @@ double f(double y, double t) {
 void makePlot(vector<double> *x, vector<double> *y)
 {
 	ofstream file;
-	file.open("data.txt");
+	file.open("result.txt");
 
 	for(int i = 0; i < x->size(); ++i)
 	{
 		file << x->at(i) << " " << y->at(i) << endl;
 	}
 	file.close();
-	system("gnuplot < plot_script");
-	system("gnome-open wykres.jpg");
+	system("gnuplot -p -e \""
+				   "set terminal jpeg;"
+				   "set output 'plot.jpg';"
+				   "plot 'result.txt';"
+				   "exit;"
+				   "\"");
+	system("gnome-open plot.jpg");
 }
 
 typedef double (*derivativeFunc)(double, double);
